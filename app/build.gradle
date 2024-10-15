@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.google.gms.google-services' // Google Services plugin for Firebase
+}
+
+android {
+    compileSdkVersion 34 // Use the latest SDK version
+
+    namespace "com.example.mainactivity" // Namespace
+
+    defaultConfig {
+        applicationId "com.example.mainactivity"
+        minSdkVersion 26 // Minimum supported Android version
+        targetSdkVersion 34 // Target the latest Android version
+        versionCode 1 // Increment this with each release
+        versionName "1.0" // Update with each release
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // Instrumentation tests runner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false // Disable minification for easier debugging
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' // ProGuard rules for release builds
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8 // Use Java 8 features
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions { // If using Kotlin, ensure to specify the Kotlin options
+        jvmTarget = "1.8" // Target Java 8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar']) // Include local .jar files
+
+    // AndroidX and Material Components
+    implementation 'androidx.appcompat:appcompat:1.7.0' // Update if a newer version is available
+    implementation 'androidx.activity:activity:1.9.2' // Update if a newer version is available
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // Update if a newer version is available
+    implementation 'com.google.android.material:material:1.12.0' // Update if a newer version is available
+
+    // Firebase dependencies
+    implementation platform('com.google.firebase:firebase-bom:33.4.0') // Ensure this is the latest
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-analytics' // Check if firebase-analytics is needed, it was deprecated
+
+    // Testing libraries
+    testImplementation 'junit:junit:4.13.2' // JUnit for unit testing
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1' // AndroidX JUnit extensions
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1' // Espresso for UI testing
+}
+
+// Apply Google Services plugin for Firebase
+apply plugin: 'com.google.gms.google-services'
